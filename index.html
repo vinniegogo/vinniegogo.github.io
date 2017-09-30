@@ -155,6 +155,57 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-==和===的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="和-的区别"><a href="#和-的区别" class="headerlink" title="==和===的区别"></a>==和===的区别</h1><hr>
+<p>==用于一般比较，在比较的时候可以转换数据类型<br><br>===用于恒等，严格比较，只要类型不匹配就会返回false<br><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log([<span class="number">10</span>] == <span class="number">10</span>);                <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'10'</span> == <span class="number">10</span>);                <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log([] == <span class="number">0</span>);                   <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="literal">true</span> == <span class="number">1</span>);                 <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log([] == <span class="literal">false</span>);               <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(![] == <span class="literal">false</span>);              <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">''</span> == <span class="number">0</span>);                   <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">''</span> == <span class="literal">false</span>);               <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="literal">null</span> == <span class="literal">false</span>);             <span class="comment">//false</span></div><div class="line"><span class="built_in">console</span>.log(!<span class="literal">null</span> == <span class="literal">true</span>);             <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="literal">null</span> == <span class="literal">undefined</span>);         <span class="comment">//true</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num = <span class="number">1</span>;</div><div class="line"><span class="keyword">var</span> str = <span class="string">'1'</span>;</div><div class="line"><span class="keyword">var</span> test = <span class="number">1</span>; </div><div class="line">test == num  <span class="comment">//true　相同类型　相同值 </span></div><div class="line">test === num <span class="comment">//true　相同类型　相同值</span></div><div class="line">test !== num <span class="comment">//false test与num类型相同，其值也相同,　非运算肯定是false </span></div><div class="line">num == str  <span class="comment">//true 　把str转换为数字，检查其是否相等。</span></div><div class="line">num != str  <span class="comment">//false == 的 非运算 </span></div><div class="line">num === str <span class="comment">//false 类型不同，直接返回false </span></div><div class="line">num !== str <span class="comment">//true  num 与 str类型不同 意味着其两者不等　非运算自然是true啦</span></div></pre></td></tr></table></figure>
+<p>== 和 != 比较若类型不同，先偿试转换类型，再作值比较，最后返回值比较结果 。<br><br>=== 和 !== 只有在相同类型下,才会比较其值。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/29/==和===的区别/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
