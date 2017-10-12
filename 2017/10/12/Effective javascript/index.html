@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://vinniegogo.github.io">
-  <title>Archives: 2017/10 | myBlog</title>
+  <title>Effective+JavaScript | myBlog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="myBlog">
-<meta property="og:url" content="https://vinniegogo.github.io/archives/2017/10/index.html">
+  <meta name="description" content="理解javascript浮点数不管是整数还是浮点数，javascript都简单的将其归为数字123typeof 17 //&amp;quot;number&amp;quot;typeof 0.1 //&amp;quot;number&amp;quot;typeof -2.1 //&amp;quot;number&amp;quot; 事实上，javascript中所有的数字都是双精数浮点数。位运算中，先将浮点数隐式的转换为32位整数（32位大端b">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Effective+JavaScript">
+<meta property="og:url" content="https://vinniegogo.github.io/2017/10/12/Effective javascript/index.html">
 <meta property="og:site_name" content="myBlog">
+<meta property="og:description" content="理解javascript浮点数不管是整数还是浮点数，javascript都简单的将其归为数字123typeof 17 //&amp;quot;number&amp;quot;typeof 0.1 //&amp;quot;number&amp;quot;typeof -2.1 //&amp;quot;number&amp;quot; 事实上，javascript中所有的数字都是双精数浮点数。位运算中，先将浮点数隐式的转换为32位整数（32位大端b">
+<meta property="og:updated_time" content="2017-10-12T09:59:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="myBlog">
+<meta name="twitter:title" content="Effective+JavaScript">
+<meta name="twitter:description" content="理解javascript浮点数不管是整数还是浮点数，javascript都简单的将其归为数字123typeof 17 //&amp;quot;number&amp;quot;typeof 0.1 //&amp;quot;number&amp;quot;typeof -2.1 //&amp;quot;number&amp;quot; 事实上，javascript中所有的数字都是双精数浮点数。位运算中，先将浮点数隐式的转换为32位整数（32位大端b">
   
     <link rel="alternative" href="/atom.xml" title="myBlog" type="application/atom+xml">
   
@@ -153,36 +158,74 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Effective javascript" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/12/Effective javascript/" class="archive-article-date">
-  	<time datetime="2017-10-11T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-12</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/12/Effective javascript/">Effective+JavaScript</a>
+    <h1 class="article-title" itemprop="name">
+      Effective+JavaScript
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/10/12/Effective javascript/" class="archive-article-date">
+  	<time datetime="2017-10-11T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="理解javascript浮点数"><a href="#理解javascript浮点数" class="headerlink" title="理解javascript浮点数"></a>理解javascript浮点数</h2><p>不管是整数还是浮点数，javascript都简单的将其归为数字<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">typeof 17 //&quot;number&quot;</div><div class="line">typeof 0.1 //&quot;number&quot;</div><div class="line">typeof -2.1 //&quot;number&quot;</div></pre></td></tr></table></figure></p>
+<p>事实上，javascript中所有的数字都是双精数浮点数。<br>位运算中，先将浮点数隐式的转换为32位整数（32位大端big-endian）后再进行运算。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">7 | 2 ;//7</div></pre></td></tr></table></figure>
+<p>先将7转化为32位2进制的数：111，这里我省略了1前面的0。2转化为：10。<br><br>然后111与010进行或运算，结果为：111。再转化为10进制，结果为7。<br><br>也可以用数字类型的tostring（) 查看,toString方法指定了转换基数，此例子中以基数2（二进制）表示：<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(7).toString(2); //&quot;111&quot;</div><div class="line">(2).toString(2); //&quot;10&quot;</div><div class="line">parseInt(&quot;111&quot;,2);//7</div></pre></td></tr></table></figure></p>
+<p>浮点数不精确,其原因是在转化为2进制的时候，化不尽，导致的误差。解决方案是尽可能采取整数值运算。尽可能转化为小的单位进行运算。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">0.1+0.2;//0.30000000000000004</div><div class="line">0.2+0.3;//0.5</div><div class="line"></div><div class="line">(0.1+0.2)+0.3 //0.6000000000000001</div><div class="line">0.1+(0.2+0.3) //0.6</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">(10+20)+30 //60</div><div class="line">10+(20+30) //60</div></pre></td></tr></table></figure>
+<h2 id="当心隐式的强制转换"><a href="#当心隐式的强制转换" class="headerlink" title="当心隐式的强制转换"></a>当心隐式的强制转换</h2><p>结果为null的变量在算术运算中不会导致失败，而是被隐式转换为0；未定义的变量会被转换为特殊的浮点数值NaN。不会抛出异常，而是继续运算。<br><br>但是，NaN不等于其本身<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var x =NaN;</div><div class="line">x===NaN;//false</div></pre></td></tr></table></figure></p>
+<p>标准库函数isNaN也不可靠。因为对于类型已知是数字的，没有问题。但是对于其他绝对不是NaN，但会被强制转换为NaN的值，使用此方法无效。例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">isNaN(NaN);//true</div><div class="line">isNaN(&apos;aaaaString&apos;);//true</div><div class="line">isNaN(undefined);//true</div><div class="line">isNaN(&#123;&#125;);//true</div><div class="line">isNaN(&#123;a:&apos;a&apos;&#125;);//true</div></pre></td></tr></table></figure></p>
+<p>由于NaN是唯一一个不等于自身的值，所以可以用是否与自身相等的方法检测。因此，可以随时通过检查一个值是否等于其自身的方式来测试该值是否是NaN<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var a=NaN;</div><div class="line">a !==a;//true</div><div class="line"></div><div class="line">var b=&quot;foo&quot;;</div><div class="line">b !==b ; //false</div></pre></td></tr></table></figure></p>
+<p>可以将这个特性抽象为一个实用工具函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function isReallyNaN(a) &#123;</div><div class="line">    return x !== x;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>对象也会被强制转换为原始值。最常见为字符串：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&apos;the Math Object:&apos; + Math;//&quot;the Math Object:[object Math]&quot;</div><div class="line">&apos;the JSON Object:&apos; + JSON;//&quot;the JSON Object:[object JSON]&quot;</div></pre></td></tr></table></figure></p>
+<p>对象隐式调用了自身的toString方法转换为字符串<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Math.toString();//&quot;[object Math]&quot;</div></pre></td></tr></table></figure></p>
+<p>类似的，对象也可以通过其valueOf方法转换为数字<br><br>对象通过valueOf()方法强制转化为数字，通过toString()方法强制转化为字符串。<br><br>但是，一个对象同时有toString和valueOf时：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">    toString:function () &#123;</div><div class="line">        return &apos;[object MyObject]&apos;;</div><div class="line">    &#125;,</div><div class="line">    valueOf:function () &#123;</div><div class="line">        return 17;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">&apos;abc&apos; + obj;//&quot;abc17&quot;</div></pre></td></tr></table></figure></p>
+<p>大多数的 JavaScript 值都为真值，也就是能隐式的转换为 true。<br>JavaScript 中有7个假值：false, 0, -0, “”, NaN, null, undefined.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function point(x,y) &#123;</div><div class="line">    if (!x) &#123;</div><div class="line">        x = 320;</div><div class="line">    &#125;</div><div class="line">    if (!y) &#123;</div><div class="line">        y=240;</div><div class="line">    &#125;</div><div class="line">    return&#123;</div><div class="line">        x:x,</div><div class="line">        y:y</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>此函数会忽略任何为假值的参数，包括0。<br>检查是否为undifined更为严格的方式是typeof<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function point(x,y) &#123;</div><div class="line">    if (typeof x ===&apos;undefined&apos;) &#123;</div><div class="line">        x = 320;</div><div class="line">    &#125;</div><div class="line">    if (typeof y ===&apos;undefined&apos;) &#123;</div><div class="line">        y = 240;</div><div class="line">    &#125;</div><div class="line">    return&#123;</div><div class="line">        x:x,</div><div class="line">        y:y</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>此版本的point可以正确识别到0 和 undifined<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">point(0,0);//&#123;x:0,y:0&#125;</div></pre></td></tr></table></figure></p>
+<p>或<br><figure class="highlight plain"><figcaption><span>(x </span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">    ......</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>测试一个值是否为未定义的值，应该使用typeof或者与undefined进行比较而不是使用真值运算。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -194,57 +237,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://vinniegogo.github.io/2017/10/12/Effective javascript/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/10/何为运势，当然不是因为自己“倒霉”/" class="archive-article-date">
-  	<time datetime="2017-10-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-10</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/10/10/何为运势，当然不是因为自己“倒霉”/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">何为运势，当然不是因为自己“倒霉”</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/10/何为运势，当然不是因为自己“倒霉”/">何为运势，当然不是因为自己“倒霉”</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">生活</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -267,8 +359,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
