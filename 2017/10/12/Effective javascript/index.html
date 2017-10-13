@@ -15,7 +15,7 @@
 <meta property="og:url" content="https://vinniegogo.github.io/2017/10/12/Effective javascript/index.html">
 <meta property="og:site_name" content="myBlog">
 <meta property="og:description" content="理解javascript浮点数不管是整数还是浮点数，javascript都简单的将其归为数字123typeof 17 //&amp;quot;number&amp;quot;typeof 0.1 //&amp;quot;number&amp;quot;typeof -2.1 //&amp;quot;number&amp;quot; 事实上，javascript中所有的数字都是双精数浮点数。位运算中，先将浮点数隐式的转换为32位整数（32位大端b">
-<meta property="og:updated_time" content="2017-10-12T13:46:31.000Z">
+<meta property="og:updated_time" content="2017-10-13T05:47:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Effective+JavaScript--让自己习惯 JavaScript">
 <meta name="twitter:description" content="理解javascript浮点数不管是整数还是浮点数，javascript都简单的将其归为数字123typeof 17 //&amp;quot;number&amp;quot;typeof 0.1 //&amp;quot;number&amp;quot;typeof -2.1 //&amp;quot;number&amp;quot; 事实上，javascript中所有的数字都是双精数浮点数。位运算中，先将浮点数隐式的转换为32位整数（32位大端b">
@@ -243,6 +243,60 @@
 </table>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var date = new Date(&quot;1999/12/31&quot;);</div><div class="line">date == &quot;1999/12/31&quot;;//false</div><div class="line">date ;//Fri Dec 31 1999 00:00:00 GMT+0800 (CST)</div><div class="line">date.toString();//&quot;Fri Dec 31 1999 00:00:00 GMT+0800 (CST)&quot;</div></pre></td></tr></table></figure>
 <p>这个强制转化失败的原因是Date 被转化为了一种不同格式的字符串<br>**==运算符并不能推断和统一所有的数据格式。更好的策略是自定义应用程序转化的逻辑，并使用严格相等运算符。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">var date = new Date(&quot;1999/12/31&quot;);</div><div class="line">function toYMD(date)&#123;</div><div class="line">    var y = date.getYear()+1900,</div><div class="line">        m = date.getMonth()+1,</div><div class="line">        d = date.getDate();</div><div class="line">    return y</div><div class="line">    + &quot;/&quot; + (m &lt;10 ? &quot;0&quot;+m :m)</div><div class="line">    + &quot;/&quot; + (d &lt;10 ? &quot;0&quot;+d :d)</div><div class="line">&#125;</div><div class="line">toYMD(date)===&quot;1999/12/31&quot;;//true</div></pre></td></tr></table></figure></p>
+<p>##了解分号插入的局限<br>javaScript 的自动分号插入（automatic semicolon insertion）技术，能推断出某些上下文中省略的分号，然后有效地自动的将分号“插入”到程序中。例如下面的代码是能正常工作的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">然后有效地自动的将分号“插入”到程序中。例如下面的代码是能正常工作的。+</div><div class="line"></div><div class="line">function Point(x,y) &#123;</div><div class="line">    this.x = x || 0</div><div class="line">    this.y = y || 0</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>分号插入的第一条规则：</li>
+<li><p>仅在 } 标记之前、一行的结束和程序的结尾处插入分号。只能在一行、一个代码块和一段程序结束的地方省略分号。所以下面是合法的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function abc(x)&#123;</div><div class="line">    var n=+x</div><div class="line">    return n*n;</div><div class="line">&#125;</div><div class="line">function area(r)&#123;r =+r;return r&#125;</div></pre></td></tr></table></figure>
+<p>但是，以下不合法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">function area(r)&#123;r =+r return r&#125;//error</div></pre></td></tr></table></figure>
+</li>
+<li><p>分号插入的第二规则：</p>
+</li>
+<li>分号仅在随后的输入标记<strong>不能</strong>被解析时插入<br>例如：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var x</div><div class="line">a = b</div><div class="line">(f())</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>能解析为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var x</div><div class="line">a = b(f())</div></pre></td></tr></table></figure></p>
+<p>与此相反，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">a = b</div><div class="line">f();</div></pre></td></tr></table></figure></p>
+<p>被解析为两条独立的语句，因为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a = b f();</div></pre></td></tr></table></figure></p>
+<p>不能被解析</p>
+<p>这也引出了：</p>
+<ul>
+<li>在以(,[,+,-,/字符开头的语句前决不能省略分号。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var x</div><div class="line">a = b</div><div class="line">(f())</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>会被解析为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var x</div><div class="line">a = b(f())</div></pre></td></tr></table></figure></p>
+<p>调整为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var x</div><div class="line">a = b</div><div class="line">;(f())</div></pre></td></tr></table></figure></p>
+<ul>
+<li>当脚本链接的时候，在脚本之间显示的插入分号</li>
+</ul>
+<p>当每个文件座位独立程序加载时，分号能自动的插到末尾，将函数调用转化为一条语句。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//a.js</div><div class="line">(function () &#123;</div><div class="line"></div><div class="line">&#125;)()</div><div class="line">//b.js</div><div class="line">(function () &#123;</div><div class="line"></div><div class="line">&#125;)()</div></pre></td></tr></table></figure></p>
+<p>但是，以下面的方式连接时：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">(function () &#123;</div><div class="line">&#125;)()</div><div class="line">(function () &#123;</div><div class="line">&#125;)()</div></pre></td></tr></table></figure></p>
+<p>会被视为一条单独的语句，等价于：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">(function () &#123;</div><div class="line"></div><div class="line">&#125;)()(function () &#123;</div><div class="line"></div><div class="line">&#125;)()</div></pre></td></tr></table></figure></p>
+<p>正确做法是： 如果文件最开始以这5个脆弱的字符（、[、+、-、/)开头是，应该在字符前加分号。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//a.js</div><div class="line">;(function () &#123;</div><div class="line"></div><div class="line">&#125;)()</div><div class="line">//b.js</div><div class="line">;(function () &#123;</div><div class="line"></div><div class="line">&#125;)()</div></pre></td></tr></table></figure></p>
+<ul>
+<li>在 return,throw,break,continue,++,– 的参数之前绝不能换行。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">return &#123;&#125;;//返回一个新对象</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>但下面的代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">return</div><div class="line">&#123;&#125;;</div></pre></td></tr></table></figure></p>
+<p>会被解析为3条独立语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">return;</div><div class="line">&#123;&#125;</div><div class="line">;</div></pre></td></tr></table></figure></p>
+<p>即，return 关键字后的换行会强制自动插入分号。<br>同样，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a</div><div class="line">++</div><div class="line">b</div></pre></td></tr></table></figure></p>
+<p>会被解析为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">a;</div><div class="line">++b;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>分号不能作为 for 循环的头部或空语句的分隔符而被插入出。意味着必须在for循环头部里显式的分号。否则下面的代码就会被解析错误。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">for (var i = 0</div><div class="line">    i &lt; array.length</div><div class="line">    i++) &#123;</div><div class="line">    array[i]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>空循环体的while循环同样需要显式的分号。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">function aaa（）&#123;while (true)&#125; //error</div></pre></td></tr></table></figure></p>
+<p>因此，需要分号：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">function aaa（）&#123;while (true);&#125;</div></pre></td></tr></table></figure></p>
+<p>##视字符串为16位的代码单元序列</p>
+<ul>
+<li>JavaScript 字符串由16位的代码单元组成，而不是由 Unicode 代码点组成。</li>
+<li>JavaScript 使用两个代码单元表示 2^16 及以上的 Unicode 代码点。这两个代码段元被称为代理对。</li>
+<li>代理对甩开了字符串元素计数，length, charAt, CharCodeAt方法以及正则表达式模式（例如“.”）受到了影响。</li>
+<li>使用第三方的库编写可识别代码点的字符串操作。</li>
+<li>每当你使用一个含有字符串操作的库时，你都需要查阅该库文档，看它如何处理代码点的整个范围。<br>Unicode 为世界上所有的文字系统的每个字符单位分配了一个唯一的整数，介于0和1114111之间，在 Unicode 术语中成为 代码点 （code point）。Unicode 允许多个不同二进制编码的代码点。目前有多种 Unicode 的编码标准，最流行的是：UTF-8、UTF-16、UTF-32。<br>代码点与其编码元素一对一映射起来，这成为一个 代码单元（code unit） 。</li>
+</ul>
+<p>Unicode 早期的大小是2^16，但后来又进行了扩充。但 JavaScript 已经采用了16位的代码单元。字符串的属性和方法（如length, charAt, CharCodeAt）都是基于代码单元层级的，而不是代码点层级。所以在后增的字符中，字符串中包含辅助平面章的代码点时，JavaScript 将每个代码点表示为两个代码单元而不是一个。+<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&apos;♬&apos;.length;//1，一个代码点是一个代码单元组成的</div><div class="line">&apos;高音谱号&apos;.length;//2，一个代码点是两个代码单元组成的</div></pre></td></tr></table></figure></p>
 
       
 
@@ -475,11 +529,11 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+                <a href="javascript:void(0)" class="js-tag color3">生活</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">生活</a>
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
             
             <div class="clearfix"></div>
