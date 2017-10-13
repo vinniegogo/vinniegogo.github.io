@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://vinniegogo.github.io">
-  <title>Archives | myBlog</title>
+  <title>Effective+JavaScript--变量作用域 | myBlog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="myBlog">
-<meta property="og:url" content="https://vinniegogo.github.io/archives/index.html">
+  <meta name="description" content="尽量少用全局对象 避免声明全局变量。 尽量声明局部变量。 避免对全局对象添加属性。 使用全局对象来做平台特性检测。  定义全局变量会污染共享的公共命名空间，并可能导致意外的命名冲突。全局变量不利于模块化，因为他会导致程序汇中独立组件间的不必要耦合。由于全局命名空间是 JavaScript 程序中独立的组件交互的唯一途径，因此，利用全局命名空间的情况是不可避免的。除非不得已，否则，最好尽量使用局部变">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Effective+JavaScript--变量作用域">
+<meta property="og:url" content="https://vinniegogo.github.io/2017/10/13/Effective javascript副本/index.html">
 <meta property="og:site_name" content="myBlog">
+<meta property="og:description" content="尽量少用全局对象 避免声明全局变量。 尽量声明局部变量。 避免对全局对象添加属性。 使用全局对象来做平台特性检测。  定义全局变量会污染共享的公共命名空间，并可能导致意外的命名冲突。全局变量不利于模块化，因为他会导致程序汇中独立组件间的不必要耦合。由于全局命名空间是 JavaScript 程序中独立的组件交互的唯一途径，因此，利用全局命名空间的情况是不可避免的。除非不得已，否则，最好尽量使用局部变">
+<meta property="og:updated_time" content="2017-10-13T13:34:42.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="myBlog">
+<meta name="twitter:title" content="Effective+JavaScript--变量作用域">
+<meta name="twitter:description" content="尽量少用全局对象 避免声明全局变量。 尽量声明局部变量。 避免对全局对象添加属性。 使用全局对象来做平台特性检测。  定义全局变量会污染共享的公共命名空间，并可能导致意外的命名冲突。全局变量不利于模块化，因为他会导致程序汇中独立组件间的不必要耦合。由于全局命名空间是 JavaScript 程序中独立的组件交互的唯一途径，因此，利用全局命名空间的情况是不可避免的。除非不得已，否则，最好尽量使用局部变">
   
     <link rel="alternative" href="/atom.xml" title="myBlog" type="application/atom+xml">
   
@@ -153,36 +158,93 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Effective javascript副本" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Effective+JavaScript--变量作用域
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/13/Effective javascript副本/" class="archive-article-date">
+
+        
+        <a href="/2017/10/13/Effective javascript副本/" class="archive-article-date">
   	<time datetime="2017-10-12T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-13</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/13/Effective javascript副本/">Effective+JavaScript--变量作用域</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="尽量少用全局对象"><a href="#尽量少用全局对象" class="headerlink" title="尽量少用全局对象"></a>尽量少用全局对象</h2><ul>
+<li>避免声明全局变量。</li>
+<li>尽量声明局部变量。</li>
+<li>避免对全局对象添加属性。</li>
+<li>使用全局对象来做平台特性检测。</li>
+</ul>
+<p>定义全局变量会污染共享的公共命名空间，并可能导致意外的命名冲突。全局变量不利于模块化，因为他会导致程序汇中独立组件间的不必要耦合。<br>由于全局命名空间是 JavaScript 程序中独立的组件交互的唯一途径，因此，利用全局命名空间的情况是不可避免的。除非不得已，否则，最好尽量使用局部变量。</p>
+<p>JavaScript 的全局命名空间也会暴露为在程序全局作用域中可以访问的全局对象，该对象作为 this 关键字的初始值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">this.foo;//undefined</div><div class="line">foo = &apos;global foo&apos;;</div><div class="line">this.foo;//&quot;global foo&quot;</div></pre></td></tr></table></figure></p>
+<p>更新全局对象也会自动更新全局命名空间：<br><figure class="highlight plain"><figcaption><span>foo </span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">this.foo = &apos;changed&apos;;</div><div class="line">foo;//&quot;changed&quot;</div></pre></td></tr></table></figure></p>
+<p><strong>创建一个全局变量有两种方式：在全局作用域使用var声明，或者加入全局对象中</strong><br>用var声明能更清晰的表达全局变量在程序范围的影响。</p>
+<p>由于全局对象提供了全局环境的动态反应机制，所以可以使用它查询一个运行环境，即<br><figure class="highlight plain"><figcaption><span>(!this.JSON) &#123;</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">    this.JSON = &#123;</div><div class="line">        parse:...</div><div class="line">        stringify:...</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="始终声明局部变量"><a href="#始终声明局部变量" class="headerlink" title="始终声明局部变量"></a>始终声明局部变量</h2><ul>
+<li>始终使用 var 声明新的局部变量。</li>
+<li>考虑使用 lint 工具帮助检查未绑定的变量。<br>如果忘记将变量声明为局部变量，那么该变量将会被隐式的转换为全局变量。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function swap(a,i,j) &#123;</div><div class="line">    temp = a[i];//global</div><div class="line">    a[i] = a[j];</div><div class="line">    a[j] = temp;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>应使用 var 声明 temp。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function swap(a,i,j) &#123;</div><div class="line">    var temp = a[i];</div><div class="line">    a[i] = a[j];</div><div class="line">    a[j] = temp;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="避免使用with"><a href="#避免使用with" class="headerlink" title="避免使用with"></a>避免使用with</h2><ul>
+<li>避免使用 with 语句</li>
+<li>使用简短的变量名代替重复访问的对象。</li>
+<li>显示地绑定局部变量到对象属性上，而不要使用 with 语句隐式地绑定它们。<br>with 语句的动机是可以理解的。程序经常需要对单个对象依次调用一系列方法。使用 with 语句可以很方便地避免对对象的重复引用。<figure class="highlight plain"><figcaption><span>status(info) &#123;</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">    var widget = new Widget();</div><div class="line">    with (widget)&#123;</div><div class="line">        setBackground(&apos;blue&apos;);</div><div class="line">        setText(&apos;aaa&apos;);</div><div class="line">        show();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>JavaScript 对待所有变量都是相同的。从内层作用域开始向外查找变量。<br>最好将上述代码改为如下：<br><figure class="highlight plain"><figcaption><span>status(info) &#123;</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">        var widget = new Widget();</div><div class="line">        widget.setBackground(&apos;blue&apos;);</div><div class="line">        widget.setText(&apos;aaa&apos;);</div><div class="line">        widget.show();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>##熟练掌握闭包</p>
+<ul>
+<li>函数可以引用定义在其外部作用域的变量。</li>
+<li>闭包比创建他们的函数有更长的声明周期。</li>
+<li>闭包在内部存储其外部变量的引用，并能读写这些变量。</li>
+</ul>
+<p>第一，JavaScript 允许你引用当前函数以外定义的变量。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function makeSandwich() &#123;</div><div class="line">    var magicIngredient = &quot;peanut butter&quot;;</div><div class="line">    function make(filling) &#123;</div><div class="line">        return magicIngredient + &quot; and &quot; + filling;</div><div class="line">    &#125;</div><div class="line">    return make(&quot;jelly&quot;);</div><div class="line">&#125;</div><div class="line">makeSandwich(); // &quot;peanut butter and jelly&quot;</div></pre></td></tr></table></figure></p>
+<p>第二，即使外部函数已经返回，当前函数仍然可以引用在外部函数所定义的变量。<br><figure class="highlight plain"><figcaption><span>sandwichMaker() &#123;</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">    var magicIngredient = &quot;peanut butter&quot;;</div><div class="line">    function make(filling) &#123;</div><div class="line">        return magicIngredient + &quot; and &quot; + filling;</div><div class="line">    &#125;</div><div class="line">    return make;</div><div class="line">&#125;</div><div class="line">var f = sandwichMaker();</div><div class="line">f(&quot;jelly&quot;); // &quot;peanut butter and jelly&quot;</div><div class="line">f(&quot;bananas&quot;); // &quot;peanut butter and bananas&quot;</div><div class="line">f(&quot;marshmallows&quot;); // &quot;peanut butter and marshmallows&quot;</div></pre></td></tr></table></figure></p>
+<p>与第一个例子不同的是，返回的是make函数本身。因此f的值为内部的make函数，调用f实际是在调用make函数。但即使sandwichMaker函数已经返回，make函数仍能记住magicIngredient的值。</p>
+<p>javaScript 的函数值包含了比调用它们时执行所需要的代码还要多的信息。而且，JavaScript 函数值还在内部存储它们可能会引用的定义在其封闭作用于的变量。那些在其所涵盖的作用域内跟踪变量的函数成为 闭包。make 函数就是一个闭包，其引用了两个外部变量 magicIngredient 和 filling。当 make 函数被调用时，其代码都能引用到这两个变量，因为该闭包存储了这两个变量。</p>
+<p>函数可以引用在其作用域内的任何变量，包括参数和外部函数变量。可以根据这个编写更通用的 sandwichMaker 函数：<br><figure class="highlight plain"><figcaption><span>sandwichMaker(magicIngredient) &#123;</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">    function make(filling) &#123;</div><div class="line">        return magicIngredient + &quot; and &quot; + filling;</div><div class="line">    &#125;</div><div class="line">    return make;</div><div class="line">&#125;</div><div class="line">var hamAnd = sandwichMaker(&quot;ham&quot;);</div><div class="line">hamAnd(&quot;cheese&quot;); // &quot;ham and cheese&quot;</div><div class="line">hamAnd(&quot;mustard&quot;); // &quot;ham and mustard&quot;</div><div class="line">var turkeyAnd = sandwichMaker(&quot;turkey&quot;);</div><div class="line">turkeyAnd(&quot;Swiss&quot;); // &quot;turkey and Swiss&quot;</div><div class="line">turkeyAnd(&quot;Provolone&quot;); // &quot;turkey and Provolone&quot;</div></pre></td></tr></table></figure></p>
+<p>该例子创建了hamAnd和turkeyAnd两个完全不同的函数，第一个函数的magicIngredient的值为“ham”，第二个函数的magicIngredient为turkey</p>
+<p>闭包的第三个特点，闭包可以更新外部的值。闭包存储的是对外部变量的引用，而不是他们的值副本。因此，对于具有访问这些外部变量的闭包，都可以进行更新。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function box() &#123;</div><div class="line">    var val = undefined;</div><div class="line">    return &#123;</div><div class="line">        set: function(newVal) &#123; val = newVal; &#125;,</div><div class="line">        get: function() &#123; return val; &#125;,</div><div class="line">        type: function() &#123; return typeof val; &#125;</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line">var b = box();</div><div class="line">b.type(); // &quot;undefined&quot;</div><div class="line">b.set(98.6);</div><div class="line">b.get(); // 98.6</div><div class="line">b.type(); // &quot;number&quot;</div></pre></td></tr></table></figure></p>
+<p>这个例子产生了三个闭包对象（set、get、type)，共享访问val变量。set闭包更新val的值。随后调用get和type查看更新的结果。</p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -194,149 +256,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://vinniegogo.github.io/2017/10/13/Effective javascript副本/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/12/Effective javascript/" class="archive-article-date">
-  	<time datetime="2017-10-11T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-12</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/10/12/Effective javascript/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Effective+JavaScript--让自己习惯 JavaScript</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/12/Effective javascript/">Effective+JavaScript--让自己习惯 JavaScript</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/10/何为运势，当然不是因为自己“倒霉”/" class="archive-article-date">
-  	<time datetime="2017-10-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/10/何为运势，当然不是因为自己“倒霉”/">何为运势，当然不是因为自己“倒霉”</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">生活</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/29/==和===的区别/" class="archive-article-date">
-  	<time datetime="2017-09-29T06:07:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/29/==和===的区别/">==和===的区别</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/09/29/hello-world/" class="archive-article-date">
-  	<time datetime="2017-09-29T06:07:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/09/29/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -359,8 +378,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
