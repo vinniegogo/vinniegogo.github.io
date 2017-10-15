@@ -6,19 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://vinniegogo.github.io">
-  <title>Effective+JavaScript--让自己习惯 JavaScript | myBlog</title>
+  <title>Effective+JavaScript--使用函数 | myBlog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="理解javascript浮点数不管是整数还是浮点数，javascript都简单的将其归为数字123typeof 17 //&quot;number&quot;typeof 0.1 //&quot;number&quot;typeof -2.1 //&quot;number&quot; 事实上，javascript中所有的数字都是双精数浮点数。位运算中，先将浮点数隐式的转换为32位整数（32位大端big-endian）后再进行运算。 17 | 2 ;//7">
+  <meta name="description" content="理解函数调用、方法调用、及构造函数调用之间的区别 方法调用将被查找方法属性的对象作为调用接收者（this绑定） 函数调用将全局对象（处于严格模式下则为undefined）作为其接收者。很少使用函数调用语法来调用方法。 构造函数需要通过new运算符调用，并产生一个新的对象作为其接收者  面向对象编程中，函数、方法、类的构造函数是三种不同的概念。JS中，它们只是单个构造对象的三种不同的使用模式。  函">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Effective+JavaScript--让自己习惯 JavaScript">
-<meta property="og:url" content="https://vinniegogo.github.io/2017/10/12/Effective javascript/index.html">
+<meta property="og:title" content="Effective+JavaScript--使用函数">
+<meta property="og:url" content="https://vinniegogo.github.io/2017/10/15/Effective javascript副本/index.html">
 <meta property="og:site_name" content="myBlog">
-<meta property="og:description" content="理解javascript浮点数不管是整数还是浮点数，javascript都简单的将其归为数字123typeof 17 //&quot;number&quot;typeof 0.1 //&quot;number&quot;typeof -2.1 //&quot;number&quot; 事实上，javascript中所有的数字都是双精数浮点数。位运算中，先将浮点数隐式的转换为32位整数（32位大端big-endian）后再进行运算。 17 | 2 ;//7">
-<meta property="og:updated_time" content="2017-10-15T03:10:42.000Z">
+<meta property="og:description" content="理解函数调用、方法调用、及构造函数调用之间的区别 方法调用将被查找方法属性的对象作为调用接收者（this绑定） 函数调用将全局对象（处于严格模式下则为undefined）作为其接收者。很少使用函数调用语法来调用方法。 构造函数需要通过new运算符调用，并产生一个新的对象作为其接收者  面向对象编程中，函数、方法、类的构造函数是三种不同的概念。JS中，它们只是单个构造对象的三种不同的使用模式。  函">
+<meta property="og:image" content="http://images2015.cnblogs.com/blog/156514/201605/156514-20160525121249959-2036936383.jpg">
+<meta property="og:updated_time" content="2017-10-15T11:25:57.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Effective+JavaScript--让自己习惯 JavaScript">
-<meta name="twitter:description" content="理解javascript浮点数不管是整数还是浮点数，javascript都简单的将其归为数字123typeof 17 //&quot;number&quot;typeof 0.1 //&quot;number&quot;typeof -2.1 //&quot;number&quot; 事实上，javascript中所有的数字都是双精数浮点数。位运算中，先将浮点数隐式的转换为32位整数（32位大端big-endian）后再进行运算。 17 | 2 ;//7">
+<meta name="twitter:title" content="Effective+JavaScript--使用函数">
+<meta name="twitter:description" content="理解函数调用、方法调用、及构造函数调用之间的区别 方法调用将被查找方法属性的对象作为调用接收者（this绑定） 函数调用将全局对象（处于严格模式下则为undefined）作为其接收者。很少使用函数调用语法来调用方法。 构造函数需要通过new运算符调用，并产生一个新的对象作为其接收者  面向对象编程中，函数、方法、类的构造函数是三种不同的概念。JS中，它们只是单个构造对象的三种不同的使用模式。  函">
+<meta name="twitter:image" content="http://images2015.cnblogs.com/blog/156514/201605/156514-20160525121249959-2036936383.jpg">
   
     <link rel="alternative" href="/atom.xml" title="myBlog" type="application/atom+xml">
   
@@ -158,145 +160,101 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Effective javascript" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Effective javascript副本" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Effective+JavaScript--让自己习惯 JavaScript
+      Effective+JavaScript--使用函数
     </h1>
   
 
         
-        <a href="/2017/10/12/Effective javascript/" class="archive-article-date">
-  	<time datetime="2017-10-11T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-12</time>
+        <a href="/2017/10/15/Effective javascript副本/" class="archive-article-date">
+  	<time datetime="2017-10-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-15</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="理解javascript浮点数"><a href="#理解javascript浮点数" class="headerlink" title="理解javascript浮点数"></a>理解javascript浮点数</h2><p>不管是整数还是浮点数，javascript都简单的将其归为数字<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typeof</span> <span class="number">17</span> <span class="comment">//"number"</span></div><div class="line"><span class="keyword">typeof</span> <span class="number">0.1</span> <span class="comment">//"number"</span></div><div class="line"><span class="keyword">typeof</span> <span class="number">-2.1</span> <span class="comment">//"number"</span></div></pre></td></tr></table></figure></p>
-<p>事实上，javascript中所有的数字都是双精数浮点数。<br>位运算中，先将浮点数隐式的转换为32位整数（32位大端big-endian）后再进行运算。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">7</span> | <span class="number">2</span> ;<span class="comment">//7</span></div></pre></td></tr></table></figure>
-<p>先将7转化为32位2进制的数：111，这里我省略了1前面的0。2转化为：10。<br>然后111与010进行或运算，结果为：111。再转化为10进制，结果为7。<br>也可以用数字类型的tostring（) 查看,toString方法指定了转换基数，此例子中以基数2（二进制）表示：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(<span class="number">7</span>).toString(<span class="number">2</span>); <span class="comment">//"111"</span></div><div class="line">(<span class="number">2</span>).toString(<span class="number">2</span>); <span class="comment">//"10"</span></div><div class="line"><span class="built_in">parseInt</span>(<span class="string">"111"</span>,<span class="number">2</span>);<span class="comment">//7</span></div></pre></td></tr></table></figure></p>
-<p>浮点数不精确,其原因是在转化为2进制的时候，化不尽，导致的误差。解决方案是尽可能采取整数值运算。尽可能转化为小的单位进行运算。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="number">0.1</span>+<span class="number">0.2</span>;<span class="comment">//0.30000000000000004</span></div><div class="line"><span class="number">0.2</span>+<span class="number">0.3</span>;<span class="comment">//0.5</span></div><div class="line"></div><div class="line">(<span class="number">0.1</span>+<span class="number">0.2</span>)+<span class="number">0.3</span> <span class="comment">//0.6000000000000001</span></div><div class="line"><span class="number">0.1</span>+(<span class="number">0.2</span>+<span class="number">0.3</span>) <span class="comment">//0.6</span></div></pre></td></tr></table></figure></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">(<span class="number">10</span>+<span class="number">20</span>)+<span class="number">30</span> <span class="comment">//60</span></div><div class="line"><span class="number">10</span>+(<span class="number">20</span>+<span class="number">30</span>) <span class="comment">//60</span></div></pre></td></tr></table></figure>
-<h2 id="当心隐式的强制转换"><a href="#当心隐式的强制转换" class="headerlink" title="当心隐式的强制转换"></a>当心隐式的强制转换</h2><p>结果为null的变量在算术运算中不会导致失败，而是被隐式转换为0；未定义的变量会被转换为特殊的浮点数值NaN。不会抛出异常，而是继续运算。<br>但是，NaN不等于其本身<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x =<span class="literal">NaN</span>;</div><div class="line">x===<span class="literal">NaN</span>;<span class="comment">//false</span></div></pre></td></tr></table></figure></p>
-<p>标准库函数isNaN也不可靠。因为对于类型已知是数字的，没有问题。但是对于其他绝对不是NaN，但会被强制转换为NaN的值，使用此方法无效。例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">isNaN</span>(<span class="literal">NaN</span>);<span class="comment">//true</span></div><div class="line"><span class="built_in">isNaN</span>(<span class="string">'aaaaString'</span>);<span class="comment">//true</span></div><div class="line"><span class="built_in">isNaN</span>(<span class="literal">undefined</span>);<span class="comment">//true</span></div><div class="line"><span class="built_in">isNaN</span>(&#123;&#125;);<span class="comment">//true</span></div><div class="line"><span class="built_in">isNaN</span>(&#123;<span class="attr">a</span>:<span class="string">'a'</span>&#125;);<span class="comment">//true</span></div></pre></td></tr></table></figure></p>
-<p>由于NaN是唯一一个不等于自身的值，所以可以用是否与自身相等的方法检测。因此，可以随时通过检查一个值是否等于其自身的方式来测试该值是否是NaN<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a=<span class="literal">NaN</span>;</div><div class="line">a !==a;<span class="comment">//true</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> b=<span class="string">"foo"</span>;</div><div class="line">b !==b ; <span class="comment">//false</span></div></pre></td></tr></table></figure></p>
-<p>可以将这个特性抽象为一个实用工具函数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">isReallyNaN</span>(<span class="params">a</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> x !== x;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>对象也会被强制转换为原始值。最常见为字符串：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="string">'the Math Object:'</span> + <span class="built_in">Math</span>;<span class="comment">//"the Math Object:[object Math]"</span></div><div class="line"><span class="string">'the JSON Object:'</span> + <span class="built_in">JSON</span>;<span class="comment">//"the JSON Object:[object JSON]"</span></div></pre></td></tr></table></figure></p>
-<p>对象隐式调用了自身的toString方法转换为字符串<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Math</span>.toString();<span class="comment">//"[object Math]"</span></div></pre></td></tr></table></figure></p>
-<p>类似的，对象也可以通过其valueOf方法转换为数字<br>对象通过valueOf()方法强制转化为数字，通过toString()方法强制转化为字符串。<br>但是，一个对象同时有toString和valueOf时：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj = &#123;</div><div class="line">    toString:<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">'[object MyObject]'</span>;</div><div class="line">    &#125;,</div><div class="line">    valueOf:<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">17</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="string">'abc'</span> + obj;<span class="comment">//"abc17"</span></div></pre></td></tr></table></figure></p>
-<p>大多数的 JavaScript 值都为真值，也就是能隐式的转换为 true。<br>JavaScript 中有7个假值：false, 0, -0, “”, NaN, null, undefined.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">point</span>(<span class="params">x,y</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!x) &#123;</div><div class="line">        x = <span class="number">320</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (!y) &#123;</div><div class="line">        y=<span class="number">240</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span>&#123;</div><div class="line">        x:x,</div><div class="line">        y:y</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>此函数会忽略任何为假值的参数，包括0。<br>检查是否为undifined更为严格的方式是typeof<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">point</span>(<span class="params">x,y</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> x ===<span class="string">'undefined'</span>) &#123;</div><div class="line">        x = <span class="number">320</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> y ===<span class="string">'undefined'</span>) &#123;</div><div class="line">        y = <span class="number">240</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span>&#123;</div><div class="line">        x:x,</div><div class="line">        y:y</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>此版本的point可以正确识别到0 和 undifined<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">point();<span class="comment">//&#123;x:320,y:240&#125;</span></div><div class="line">point(<span class="number">0</span>,<span class="number">0</span>);<span class="comment">//&#123;x:0,y:0&#125;</span></div></pre></td></tr></table></figure></p>
-<p>或<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (x === <span class="literal">undefined</span>) &#123;</div><div class="line">    ......</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>测试一个值是否为未定义的值，应该使用typeof或者与undefined进行比较而不是使用真值运算。</p>
-<h3 id="原始类型优于封装类型"><a href="#原始类型优于封装类型" class="headerlink" title="原始类型优于封装类型"></a>原始类型优于封装类型</h3><p>除了对象外，JavaScript 有5个原始类型：布尔值，数字，字符串，null，undefined。<br>同时，标准库提供了构造函数来封装布尔值，数字和字符串作为对象。比如可以创建String对象。+<br>创建一个String对象，该对象封装了一个字符串值<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> s= <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"hello"</span>);</div></pre></td></tr></table></figure></p>
-<p>不同于原始的字符串，String对象是一个真正的对象。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typeof</span> <span class="string">"hello"</span>; <span class="comment">//"string"</span></div><div class="line"><span class="keyword">var</span> s= <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"hello"</span>);</div><div class="line"><span class="keyword">typeof</span> s ;<span class="comment">//"object"</span></div></pre></td></tr></table></figure></p>
-<p>作为比较时<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> s1 = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'hello'</span>);</div><div class="line"><span class="keyword">var</span> s2 = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'hello'</span>);</div><div class="line">s1 === s2;  <span class="comment">//false</span></div><div class="line">s1 == s2;   <span class="comment">//false</span></div></pre></td></tr></table></figure></p>
-<p>每个String对象都是一个单独的对象，其总是只等于自身。</p>
-<p>对原始值提取属性和进行方法调用时，这里有一个隐式转换，表现的就像对象类型进行了封装该值。</p>
-<p>对原始值设置属性，没有丝毫影响。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> s = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"hello"</span>);</div><div class="line">s.someProperty=<span class="number">12</span>;</div><div class="line">s.someProperty;<span class="comment">//12</span></div><div class="line"></div><div class="line"><span class="string">"hello"</span>.someProperty=<span class="number">12</span>;</div><div class="line"><span class="string">"hello"</span>.someProperty;<span class="comment">//undefined</span></div></pre></td></tr></table></figure></p>
-<p>因为每次隐式封装都会产生一个新的String对象，更新第一个封装对象不会造成持久的影响，对原始值设置属性是没有意义的。<br><strong>获取和设置原始类型值的属性会隐性的创建封装对象。</strong></p>
-<p>##避免对混合类型使用 == 运算符</p>
-<table>
-<thead>
-<tr>
-<th>参数类型1</th>
-<th style="text-align:right">参数类型2</th>
-<th style="text-align:center">强制转换</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>null</td>
-<td style="text-align:right">undefined</td>
-<td style="text-align:center">不转换，总是返回 true</td>
-</tr>
-<tr>
-<td>null 或 undefined</td>
-<td style="text-align:right">其他任何非 null 或 undefined 的类型</td>
-<td style="text-align:center">不转换，总是返回 false</td>
-</tr>
-<tr>
-<td>原始类型：string、number 或 boolean</td>
-<td style="text-align:right">Date 对象</td>
-<td style="text-align:center">将原始类型转换为数字；将 Date 对象转换为原始类型（优先尝试 toString 方法，再尝试 valueOf 方法）</td>
-</tr>
-<tr>
-<td>原始类型：string、number 或 boolean</td>
-<td style="text-align:right">非 Date 对象</td>
-<td style="text-align:center">将原始类型转换为数字；将非 Date 对象转换为原始类型（优先尝试 valueOf 方法，再尝试 toString 方法）</td>
-</tr>
-<tr>
-<td>原始类型：string、number 或 boolean</td>
-<td style="text-align:right">原始类型：string、number 或 boolea</td>
-<td style="text-align:center">将原始类型转换为数字</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">"1999/12/31"</span>);</div><div class="line">date == <span class="string">"1999/12/31"</span>;<span class="comment">//false</span></div><div class="line">date ;<span class="comment">//Fri Dec 31 1999 00:00:00 GMT+0800 (CST)</span></div><div class="line">date.toString();<span class="comment">//"Fri Dec 31 1999 00:00:00 GMT+0800 (CST)"</span></div></pre></td></tr></table></figure>
-<p>这个强制转化失败的原因是Date 被转化为了一种不同格式的字符串<br>**==运算符并不能推断和统一所有的数据格式。更好的策略是自定义应用程序转化的逻辑，并使用严格相等运算符。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">"1999/12/31"</span>);</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">toYMD</span>(<span class="params">date</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> y = date.getYear()+<span class="number">1900</span>,</div><div class="line">        m = date.getMonth()+<span class="number">1</span>,</div><div class="line">        d = date.getDate();</div><div class="line">    <span class="keyword">return</span> y</div><div class="line">    + <span class="string">"/"</span> + (m &lt;<span class="number">10</span> ? <span class="string">"0"</span>+m :m)</div><div class="line">    + <span class="string">"/"</span> + (d &lt;<span class="number">10</span> ? <span class="string">"0"</span>+d :d)</div><div class="line">&#125;</div><div class="line">toYMD(date)===<span class="string">"1999/12/31"</span>;<span class="comment">//true</span></div></pre></td></tr></table></figure></p>
-<p>##了解分号插入的局限<br>javaScript 的自动分号插入（automatic semicolon insertion）技术，能推断出某些上下文中省略的分号，然后有效地自动的将分号“插入”到程序中。例如下面的代码是能正常工作的。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">然后有效地自动的将分号“插入”到程序中。例如下面的代码是能正常工作的。+</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Point</span>(<span class="params">x,y</span>) </span>&#123;</div><div class="line">    <span class="keyword">this</span>.x = x || <span class="number">0</span></div><div class="line">    <span class="keyword">this</span>.y = y || <span class="number">0</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<ul>
-<li>分号插入的第一条规则：</li>
-<li><p>仅在 } 标记之前、一行的结束和程序的结尾处插入分号。只能在一行、一个代码块和一段程序结束的地方省略分号。所以下面是合法的：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">abc</span>(<span class="params">x</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> n=+x</div><div class="line">    <span class="keyword">return</span> n*n;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">area</span>(<span class="params">r</span>)</span>&#123;r =+r;<span class="keyword">return</span> r&#125;</div></pre></td></tr></table></figure>
-<p>但是，以下不合法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">area</span>(<span class="params">r</span>)</span>&#123;r =+r <span class="keyword">return</span> r&#125;<span class="comment">//error</span></div></pre></td></tr></table></figure>
-</li>
-<li><p>分号插入的第二规则：</p>
-</li>
-<li>分号仅在随后的输入标记<strong>不能</strong>被解析时插入<br>例如：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x</div><div class="line">a = b</div><div class="line">(f())</div></pre></td></tr></table></figure>
-</li>
+        <h2 id="理解函数调用、方法调用、及构造函数调用之间的区别"><a href="#理解函数调用、方法调用、及构造函数调用之间的区别" class="headerlink" title="理解函数调用、方法调用、及构造函数调用之间的区别"></a>理解函数调用、方法调用、及构造函数调用之间的区别</h2><ul>
+<li>方法调用将被查找方法属性的对象作为调用接收者（this绑定）</li>
+<li>函数调用将全局对象（处于严格模式下则为undefined）作为其接收者。很少使用函数调用语法来调用方法。</li>
+<li>构造函数需要通过new运算符调用，并产生一个新的对象作为其接收者</li>
 </ul>
-<p>能解析为：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x</div><div class="line">a = b(f())</div></pre></td></tr></table></figure></p>
-<p>与此相反，<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">a = b</div><div class="line">f();</div></pre></td></tr></table></figure></p>
-<p>被解析为两条独立的语句，因为<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a = b f();</div></pre></td></tr></table></figure></p>
-<p>不能被解析</p>
-<p>这也引出了：</p>
-<ul>
-<li>在以(,[,+,-,/字符开头的语句前决不能省略分号。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x</div><div class="line">a = b</div><div class="line">(f())</div></pre></td></tr></table></figure>
+<p>面向对象编程中，函数、方法、类的构造函数是三种不同的概念。<br>JS中，它们只是单个构造对象的三种不同的使用模式。</p>
+<ol>
+<li>函数调用<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params">username</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">'hello,'</span>+username;</div><div class="line">&#125;</div><div class="line">    hello(<span class="string">'world'</span>);<span class="comment">//"hello,world"</span></div></pre></td></tr></table></figure>
 </li>
-</ul>
-<p>会被解析为：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x</div><div class="line">a = b(f())</div></pre></td></tr></table></figure></p>
-<p>调整为：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x</div><div class="line">a = b</div><div class="line">;(f())</div></pre></td></tr></table></figure></p>
-<ul>
-<li>当脚本链接的时候，在脚本之间显示的插入分号</li>
-</ul>
-<p>当每个文件座位独立程序加载时，分号能自动的插到末尾，将函数调用转化为一条语句。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//a.js</span></div><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;)()</div><div class="line"><span class="comment">//b.js</span></div><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;)()</div></pre></td></tr></table></figure></p>
-<p>但是，以下面的方式连接时：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">&#125;)()</div><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">&#125;)()</div></pre></td></tr></table></figure></p>
-<p>会被视为一条单独的语句，等价于：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;)()(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;)()</div></pre></td></tr></table></figure></p>
-<p>正确做法是： 如果文件最开始以这5个脆弱的字符（、[、+、-、/)开头是，应该在字符前加分号。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//a.js</span></div><div class="line">;(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;)()</div><div class="line"><span class="comment">//b.js</span></div><div class="line">;(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">&#125;)()</div></pre></td></tr></table></figure></p>
-<ul>
-<li>在 return,throw,break,continue,++,– 的参数之前绝不能换行。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">return</span> &#123;&#125;;<span class="comment">//返回一个新对象</span></div></pre></td></tr></table></figure>
+</ol>
+<p>函数的表现与行为一致，调用hello函数并将给定的实参绑定到username形参。</p>
+<ol>
+<li>方法调用,js中的方法，是指对象的属性恰好是函数而已。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj=&#123;</div><div class="line">   hello:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="string">'hello,'</span>+<span class="keyword">this</span>.username;</div><div class="line">   &#125;,</div><div class="line">   username:<span class="string">'world'</span></div><div class="line">&#125;;</div><div class="line">obj.hello();<span class="comment">//"hello,world"</span></div></pre></td></tr></table></figure>
 </li>
-</ul>
-<p>但下面的代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">return</span></div><div class="line">&#123;&#125;;</div></pre></td></tr></table></figure></p>
-<p>会被解析为3条独立语句：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">return</span>;</div><div class="line">&#123;&#125;</div><div class="line">;</div></pre></td></tr></table></figure></p>
-<p>即，return 关键字后的换行会强制自动插入分号。<br>同样，<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a</div><div class="line">++</div><div class="line">b</div></pre></td></tr></table></figure></p>
-<p>会被解析为：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">a;</div><div class="line">++b;</div></pre></td></tr></table></figure></p>
-<ul>
-<li>分号不能作为 for 循环的头部或空语句的分隔符而被插入出。意味着必须在for循环头部里显式的分号。否则下面的代码就会被解析错误。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span></div><div class="line">    i &lt; array.length</div><div class="line">    i++) &#123;</div><div class="line">    array[i]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>空循环体的while循环同样需要显式的分号。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">aaa</span>(<span class="params"></span>)</span>&#123;<span class="keyword">while</span> (<span class="literal">true</span>)&#125; <span class="comment">//error</span></div></pre></td></tr></table></figure></p>
-<p>因此，需要分号：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">aaa</span>(<span class="params"></span>)</span>&#123;<span class="keyword">while</span> (<span class="literal">true</span>);&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="视字符串为16位的代码单元序列"><a href="#视字符串为16位的代码单元序列" class="headerlink" title="视字符串为16位的代码单元序列"></a>视字符串为16位的代码单元序列</h2><ul>
-<li>JavaScript 字符串由16位的代码单元组成，而不是由 Unicode 代码点组成。</li>
-<li>JavaScript 使用两个代码单元表示 2^16 及以上的 Unicode 代码点。这两个代码段元被称为代理对。</li>
-<li>代理对甩开了字符串元素计数，length, charAt, CharCodeAt方法以及正则表达式模式（例如“.”）受到了影响。</li>
-<li>使用第三方的库编写可识别代码点的字符串操作。</li>
-<li>每当你使用一个含有字符串操作的库时，你都需要查阅该库文档，看它如何处理代码点的整个范围。<br>Unicode 为世界上所有的文字系统的每个字符单位分配了一个唯一的整数，介于0和1114111之间，在 Unicode 术语中成为 代码点 （code point）。Unicode 允许多个不同二进制编码的代码点。目前有多种 Unicode 的编码标准，最流行的是：UTF-8、UTF-16、UTF-32。<br>代码点与其编码元素一对一映射起来，这成为一个 代码单元（code unit） 。</li>
-</ul>
-<p>Unicode 早期的大小是2^16，但后来又进行了扩充。但 JavaScript 已经采用了16位的代码单元。字符串的属性和方法（如length, charAt, CharCodeAt）都是基于代码单元层级的，而不是代码点层级。所以在后增的字符中，字符串中包含辅助平面章的代码点时，JavaScript 将每个代码点表示为两个代码单元而不是一个。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="string">'♬'</span>.length;<span class="comment">//1，一个代码点是一个代码单元组成的</span></div><div class="line"><span class="string">'高音谱号'</span>.length;<span class="comment">//2，一个代码点是两个代码单元组成的</span></div></pre></td></tr></table></figure></p>
+</ol>
+<p>这里方法hello是通过this变量来访问obj对象的属性的。 </p>
+<p>this的指向是如何完成的呢？从上面的这个例子中，可能倾向于this变量被绑定到obj对象了，由于hello方法定义在obj对象中。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj2=&#123;</div><div class="line">    hello:obj.hello,</div><div class="line">    username:<span class="string">'han mei mei.'</span></div><div class="line">&#125;</div><div class="line">obj2.hello();<span class="comment">//"hello,han mei mei."</span></div></pre></td></tr></table></figure></p>
+<p><strong> 事实是，在方法调用的时候才由表达式来确定this变量的绑定情况。 </strong><br>绑定到this变量的对象被称为调用接收者（receiver）。<br>表达式obj.hello()在obj对象中查找名为hello的属性，并将obj对象作为接收者，然后调用该属性。<br>表达式obj2.hello()在obj2对象中查找名为hello的属性，恰巧是obj.hello函数，但是接收者是obj2对象。 </p>
+<font color="red">通常，通过某个对象调用方法将查找该方法并将对象作为该方法的接收者，也即this变量的对象。 </font>
 
+<p><img src="http://images2015.cnblogs.com/blog/156514/201605/156514-20160525121249959-2036936383.jpg" alt="方法调用的时候才由表达式来确定this变量的绑定情况"></p>
+<ol>
+<li>构造函数使用<br>就像方法和纯函数一样，构造函数也是由function运算符定义的。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">User</span>(<span class="params">name,pwd</span>)</span>&#123;</div><div class="line">     <span class="keyword">this</span>.name=name;</div><div class="line">     <span class="keyword">this</span>.pwd=pwd;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> u=<span class="keyword">new</span> User(<span class="string">'li lei'</span>,<span class="string">'asdfxov2-3409'</span>);</div><div class="line">u.name;<span class="comment">//"li lei"</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong> 使用new操作符来调用User即视为构造函数。</strong><br>与函数调用和方法调用不同的是，构造函数调用将一个全新的对象作为this变量的值，并隐式返回这个新对象作为调用结果。构造函数的主要职责是初始化该新对象。</p>
+<h2 id="熟练掌握高阶函数"><a href="#熟练掌握高阶函数" class="headerlink" title="熟练掌握高阶函数"></a>熟练掌握高阶函数</h2><p>高阶函数是将函数作为参数或者返回值的函数。？？</p>
+<h2 id="使用call方法自定义接收者来调用方法"><a href="#使用call方法自定义接收者来调用方法" class="headerlink" title="使用call方法自定义接收者来调用方法"></a>使用call方法自定义接收者来调用方法</h2><p>函数或方法的接收者（即绑定到特殊关键字this的值）是由调用者的语法决定的。<br>有时需要使用自定义接收者来调用函数，因为该函数可能并不是期望的接收者对象的属性。<br>可以将方法作为一个新的属性添加到接收者对象中<br>函数对象call方法：<br>基本描述：用途是在特定的作用域下来执行函数，实际上等于设置函数体内this对象的值。<br>函数对象具有一个内置的方法call来自定义接收者。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">f.call(obj,arg1,arg2,arg3)</div></pre></td></tr></table></figure></p>
+<p>直接调用函数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">f(arg1,arg2,arg3)</div></pre></td></tr></table></figure></p>
+<p>不同点在于，第一个参数指定了一个显式的接收者对象（即指定函数内部this的指向）</p>
+<ol>
+<li>当调用的方法已经被删除、修改或者覆盖时，call方法就可以派上用场了。<br>以hasOwnProperty方法为例，因为这个方法是Object的方法，所有对象都可以访问调用这个方法。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj=&#123;</div><div class="line">    foo:<span class="string">'good'</span></div><div class="line">&#125;;</div><div class="line">obj.hasOwnProperty(<span class="string">'foo'</span>);<span class="comment">//true</span></div><div class="line">然后当这个方法被覆盖时</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">obj.hasOwnProperty=<span class="number">1</span>;</div><div class="line">obj.hasOwnProperty(<span class="string">'foo'</span>);<span class="comment">//Uncaught TypeError: obj.hasOwnProperty is not a function(…)</span></div><div class="line">这时，call方法就可以派上用场了</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> hasOwnProperty=&#123;&#125;.hasOwnProperty;</div><div class="line"><span class="keyword">delete</span> obj.hasOwnProperty;</div><div class="line">hasOwnProperty.call(obj,<span class="string">'foo'</span>);<span class="comment">//true</span></div><div class="line">hasOwnProperty.call(obj,<span class="string">'hasOwnProperty'</span>);<span class="comment">//false</span></div></pre></td></tr></table></figure>
+<ol>
+<li>定义高阶函数时call方法也特别实用。<br>高阶函数的一个惯用法是接收一个可选的参数作为调用该函数的接收者。</li>
+</ol>
+<ul>
+<li>使用call方法自定义接收者来调用函数</li>
+<li>使用call方法可以调用在给定的对象中不存在的方法</li>
+<li>使用call方法定义高阶函数允许使用者给回调函数指定接收者</li>
+</ul>
+<h2 id="使用apply方法通过不同数量的参数调用函数"><a href="#使用apply方法通过不同数量的参数调用函数" class="headerlink" title="使用apply方法通过不同数量的参数调用函数"></a>使用apply方法通过不同数量的参数调用函数</h2><p>函数的apply()方法和call方法作用相同，区别在于接收的参数的方式不同。<br>apply()方法接收两个参数，一个是对象，一个是参数数组。</p>
+<ul>
+<li>apply的作用：</li>
+</ul>
+<ol>
+<li>用于延长函数的作用域<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> color=<span class="string">'red'</span>;</div><div class="line"><span class="keyword">var</span> o=&#123;<span class="attr">color</span>:<span class="string">'blue'</span>&#125;;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayColor</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.color);</div><div class="line">&#125;</div><div class="line">sayColor();<span class="comment">//"red"</span></div><div class="line">sayColor.apply(o);<span class="comment">//"blue"</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这里通过apply()方法把函数动态绑定到了对象o上了，这时this指向o对象，得到结果”blue”。</p>
+<ol>
+<li>对象不需要与方法有任何耦合关系<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> color=<span class="string">'red'</span>;</div><div class="line"><span class="keyword">var</span> o=&#123;<span class="attr">color</span>:<span class="string">'blue'</span>&#125;;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayColor</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.color);</div><div class="line">&#125;</div><div class="line">o.sayColor=sayColor;</div><div class="line">o.sayColor();<span class="comment">//"blue"</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这里先将函数放到了对象o中，这里对象和方法就紧耦合到一起了，方法的调用必须通过对象o。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> color=<span class="string">'red'</span>;</div><div class="line"><span class="keyword">var</span> o=&#123;<span class="attr">color</span>:<span class="string">'blue'</span>&#125;;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayColor</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.color);</div><div class="line">&#125;</div><div class="line">sayColor();<span class="comment">//"red"</span></div><div class="line">sayColor.apply(o);<span class="comment">//"blue"</span></div></pre></td></tr></table></figure></p>
+<p>这里对象并没有绑定任何方法，只是在需要使用的时候，利用函数的apply或call方法来动态绑定。</p>
+<ul>
+<li>使用apply方法指定一个可计算的参数数组来调用可变参数的函数</li>
+<li>使用apply方法的第一个参数给可变参数的方法提供一个接收者</li>
+</ul>
+<h2 id="使用arguments创建可变参数的函数"><a href="#使用arguments创建可变参数的函数" class="headerlink" title="使用arguments创建可变参数的函数"></a>使用arguments创建可变参数的函数</h2><ol>
+<li><p>实现固定元数的函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">averageOfArray</span>(<span class="params">a</span>)</span>&#123;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>,sum=<span class="number">0</span>,n=a.length;i&lt;n;i++)&#123;</div><div class="line">        sum+=a[i];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> sum/n</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>利用arguments实现可变元数函数<br>利用js的一个事实，即给每个函数都隐式地提供了一个名为arguments的局部变量。arguments对象是一个类数组。它为每个实参提供了一个索引属性，还包含一个length属性用来指示参数的个数。从而可以通过遍历arguments对象的每个元素来实现可变元数的函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">average</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>,sum=<span class="number">0</span>,n=<span class="built_in">arguments</span>.length;i&lt;n;i++)&#123;</div><div class="line">        sum+=<span class="built_in">arguments</span>[i];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> sum/n;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>实现函数的重载</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">doAdd</span>(<span class="params">num1,num2</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(<span class="built_in">arguments</span>.length==<span class="number">1</span>)&#123;</div><div class="line">        <span class="keyword">return</span> num1+<span class="number">10</span>;</div><div class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">arguments</span>.length==<span class="number">2</span>)&#123;</div><div class="line">        <span class="keyword">return</span> num1+num2;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">doAdd(<span class="number">10</span>);<span class="comment">//20</span></div><div class="line">doAdd(<span class="number">30</span>,<span class="number">20</span>);<span class="comment">//50</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="永远不要修改arguments对象"><a href="#永远不要修改arguments对象" class="headerlink" title="永远不要修改arguments对象"></a>永远不要修改arguments对象</h2>
       
 
       
@@ -386,7 +344,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=https://vinniegogo.github.io/2017/10/12/Effective javascript/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=https://vinniegogo.github.io/2017/10/15/Effective javascript副本/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -400,18 +358,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/10/14/Effective javascript--变量作用域/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Effective+JavaScript--变量作用域
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/10/10/何为运势，当然不是因为自己“倒霉”/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">何为运势，当然不是因为自己“倒霉”</div>
+    <a href="/2017/10/14/Effective javascript--变量作用域/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Effective+JavaScript--变量作用域</div>
       <i class="icon-circle-right"></i>
     </a>
   
